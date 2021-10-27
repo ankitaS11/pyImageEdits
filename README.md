@@ -8,7 +8,7 @@
 5. `apply_nofilterimg`: Get an image without applying filter
 ### Usage 
 ``` 
-git clone https://github.com/ankitaS11/ImageEdits.git
+git clone https://github.com/ankitaS11/pyImageEdits.git
 mkdir build && cd build
 cmake ..
 make
