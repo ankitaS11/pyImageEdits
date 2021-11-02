@@ -26,7 +26,8 @@ python3
 >>> x.apply_redfilterimg()   # To apply red filter
 >>> x.apply_greenfilterimg() # To apply green filter
 >>> x.apply_nofilterimg()    # To get an image without applying filter
->>> x.apply_grayscaleimg()
+>>> x.apply_grayscaleimg()   # To get a grayscale image
+>>> x.adjust_brightness()    # To adjust brightness of an image
 ```
 ### Structure
 ```
@@ -50,5 +51,5 @@ python3
 ```
 ### Sample Output Images 
 <p align = "center">
-<img align="center" width="850" height="800" src="https://github.com/ankitaS11/pyImageEdits/blob/main/sample_output_images/0001.jpg">
+<img align="center" src="https://github.com/ankitaS11/pyImageEdits/blob/main/sample_output_images/0001.jpg">
 </p>
