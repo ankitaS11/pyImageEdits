@@ -50,8 +50,5 @@ python3
 ```
 ### Sample Output Images 
 <p align = "center">
-<img align="left" width="350" height="300" src="https://raw.githubusercontent.com/ankitaS11/pyImageEdits/main/sample_output_images/sampletest_image.bmp?token=AQKDYACJPWVYUJZYOLJECJDBPE4KG">
-<img align="left" width="350" height="300" src="https://github.com/ankitaS11/pyImageEdits/blob/main/sample_output_images/bluefilter_image.jpg">
-<img align="left" width="350" height="300" src="https://raw.githubusercontent.com/ankitaS11/pyImageEdits/main/sample_output_images/redfilter_image.bmp">
-<img align="left" width="350" height="300" src="https://raw.githubusercontent.com/ankitaS11/pyImageEdits/main/sample_output_images/greenfilter_image.bmp">
+<img align="center" width="850" height="800" src="https://github.com/ankitaS11/pyImageEdits/blob/main/sample_output_images/0001.jpg">
 </p>
