@@ -1,11 +1,15 @@
 # pyImageEdits
 
 ```pyImageEdits``` allows you to play with `.ppm` images by providing the following features:
-1. ```read_image```: Reads Image path.
-2. ```apply_bluefilterimg```: Applies blue filter to the given image path.
-3. `apply_greenfilterimg`: Applies green filter to  the given image path.
-4. ```apply_redfilterimg```: Applies red filter to the given image path.
-5. `apply_nofilterimg`: Get an image without applying filter
+1. ```read_image()```: Reads Image path
+2. `get_image_path()`: returns the provided image path
+3. `set_image_path("<image path>")`: Changes the image path
+4. ```apply_bluefilterimg()```: Applies blue filter to the given image path
+5. `apply_greenfilterimg()`: Applies green filter to  the given image path
+6. ```apply_redfilterimg()```: Applies red filter to the given image path
+7. `apply_nofilterimg()`: Get an image without applying filter
+8. `apply_grayscaleimg()`: Convert image to grayscale
+9. `adjust_brightness()`: Adjusts brightness of an image
 ### Usage 
 ``` 
 git clone https://github.com/ankitaS11/pyImageEdits.git
@@ -22,6 +26,8 @@ python3
 >>> import pyImageEdits
 >>> x = pyImageEdits.ImageEdits("monument.ppm")
 >>> x.read_image()           # To read the image
+>>> x.get_image_path()       # To get the provided image path
+>>> x.set_image_path()       # To change the image path
 >>> x.apply_bluefilterimg()  # To apply blue filter
 >>> x.apply_redfilterimg()   # To apply red filter
 >>> x.apply_greenfilterimg() # To apply green filter
