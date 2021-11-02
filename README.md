@@ -3,7 +3,7 @@
 ```pyImageEdits``` allows you to play with `.ppm` images by providing the following features:
 1. ```read_image()```: Reads Image path
 2. `get_image_path()`: returns the provided image path
-3. `set_image_path("<image path>")`: Changes the image path
+3. `set_image_path("<image_path>")`: Changes the image path
 4. ```apply_bluefilterimg()```: Applies blue filter to the given image path
 5. `apply_greenfilterimg()`: Applies green filter to  the given image path
 6. ```apply_redfilterimg()```: Applies red filter to the given image path
