@@ -9,6 +9,8 @@
 ### Usage 
 ``` 
 git clone https://github.com/ankitaS11/pyImageEdits.git
+cd PyImageEdits
+git clone https://github.com/pybind/pybind11.git
 mkdir build && cd build
 cmake ..
 make
@@ -24,6 +26,8 @@ python3
 >>> x.apply_redfilterimg()   # To apply red filter
 >>> x.apply_greenfilterimg() # To apply green filter
 >>> x.apply_nofilterimg()    # To get an image without applying filter
+>>> x.apply_grayscaleimg()   # To get a grayscale image
+>>> x.adjust_brightness()    # To adjust brightness of an image
 ```
 ### Structure
 ```
@@ -32,21 +36,20 @@ python3
 |-- src
   |-- ImgEdit.cpp
 |-- pymain.cpp
-|-- pybind11
 |-- CMakeLists.txt
 |-- sample_output_images
-  |-- bluefilter_image.jpg
-  |-- nofilter_image.bmp
-  |-- sampletest_image.bmp
-  |-- greenfilter_image.bmp
-  |-- redfilter_image.bmp
+  |-- sampletest_image.ppm
+  |-- bluefilter_image.ppm
+  |-- redfilter_image.ppm
+  |-- greenfilter_image.ppm
+  |-- nofilter_image.ppm
+  |-- brightened_image.ppm
+  |-- darkened_image
+  |-- grayscale_image.ppm
 |-- README.md
 |-- a.out
 ```
 ### Sample Output Images 
 <p align = "center">
-<img align="left" width="350" height="300" src="https://raw.githubusercontent.com/ankitaS11/pyImageEdits/main/sample_output_images/sampletest_image.bmp?token=AQKDYACJPWVYUJZYOLJECJDBPE4KG">
-<img align="left" width="350" height="300" src="https://github.com/ankitaS11/pyImageEdits/blob/main/sample_output_images/bluefilter_image.jpg">
-<img align="left" width="350" height="300" src="https://raw.githubusercontent.com/ankitaS11/pyImageEdits/main/sample_output_images/redfilter_image.bmp">
-<img align="left" width="350" height="300" src="https://raw.githubusercontent.com/ankitaS11/pyImageEdits/main/sample_output_images/greenfilter_image.bmp">
+<img align="center" src="https://github.com/ankitaS11/pyImageEdits/blob/main/sample_output_images/0001.jpg">
 </p>
