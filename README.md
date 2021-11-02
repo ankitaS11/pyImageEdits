@@ -24,7 +24,7 @@ Open python shell in the same directory and import `pyImageEdits`:
 ```
 python3
 >>> import pyImageEdits
->>> x = pyImageEdits.ImageEdits("monument.ppm")
+>>> x = pyImageEdits.pyImageEdits("monument.ppm")
 >>> x.read_image()           # To read the image
 >>> x.get_image_path()       # To get the provided image path
 >>> x.set_image_path()       # To change the image path
