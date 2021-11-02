@@ -15,9 +15,9 @@ public:
     ImageEdits(string image_path) {
         this->image_path = image_path;
     }
-
+    
     void read_image();
-    void apply_nofilterimg();
+    bool is_image_path_valid();
 
     string get_image_path() {
         return this->image_path;
@@ -26,10 +26,15 @@ public:
     void set_image_path(string new_path) {
         this -> image_path = new_path;
     }
-
+    
+    void apply_nofilterimg();
     void apply_bluefilterimg();
-    void apply_redfilterimg();
     void apply_greenfilterimg();
+    void apply_redfilterimg();
+    void apply_grayscaleimg();
+    void adjust_brightness();
+    void increase_brightness(int amount);
+    void decrease_brightness(int amount);
 };
 
 #endif

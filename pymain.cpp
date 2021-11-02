@@ -1,26 +1,22 @@
 #include<iostream>
-
 #include <pybind11/pybind11.h>
-#include "img.cpp"
-#include "main.hpp"
+#include "include/ImgEdit.hpp"
 
 namespace py = pybind11;
 using namespace std;
 
-int main() {
-    
-        int choice;
-        //  Image Path is provided here
-        ImageEdits imged ("monument.ppm");
-}
-
 PYBIND11_MODULE(pyImageEdits, m) {
     m.doc() = "A sample add function";
 
-    py::class_<ImageEdits>(m, "ImageEdits")
+    py::class_<ImageEdits>(m, "pyImageEdits")
         .def(py::init<std::string>())
         .def("read_image", &ImageEdits::read_image)
+        .def("get_image_path", &ImageEdits::get_image_path)
+        .def("set_image_path", &ImageEdits::set_image_path)
         .def("apply_nofilterimg", &ImageEdits::apply_nofilterimg)
         .def("apply_bluefilterimg", &ImageEdits::apply_bluefilterimg)
         .def("apply_greenfilterimg", &ImageEdits::apply_greenfilterimg)
-        .def("apply_redfilterimg", &ImageEdits::apply_redfilterimg);
+        .def("apply_redfilterimg", &ImageEdits::apply_redfilterimg)
+        .def("apply_grayscaleimg", &ImageEdits::apply_grayscaleimg)
+        .def("adjust_brightness", &ImageEdits::adjust_brightness);
+}
