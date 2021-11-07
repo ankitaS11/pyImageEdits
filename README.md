@@ -59,4 +59,5 @@ python3
 ### Sample Output Images 
 <p align = "center">
 <img align="center" src="https://github.com/ankitaS11/pyImageEdits/blob/main/sample_output_images/0001.jpg">
+<img align="center" src="https://github.com/ankitaS11/pyImageEdits/blob/main/sample_output_images/0002.jpg">
 </p>
