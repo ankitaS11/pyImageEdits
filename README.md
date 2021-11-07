@@ -1,8 +1,8 @@
 # pyImageEdits
 
 ```pyImageEdits``` allows you to play with `.ppm` images of type `P3` by providing the following features-
-1. ```read_image('imagepath.ppm')```: Reads image from the path given as an arguement.
-2. `resize(width, height)`: Resizes the image as per width and height provided in the arguement.
+1. ```read_image('imagepath.ppm')```: Reads image from the path given as an argument.
+2. `resize(width, height)`: Resizes the image as per width and height provided in the argument.
 3. `horizontal_flip()`: Flips the image horizontally.
 4. `vertical_flip()`: Flips the image vertically.
 5. `applyfilter_red()`: Applies red filter to the image.
@@ -10,7 +10,7 @@
 7. `applyfilter_green()`: Applies green filter to the image.
 8. `applyfilter_grayscale()`: Applies grayscale to the image.
 9. `adjust_brightness(amt)`: Adjusts brightness as per amt ( to decrease brightness amt < 0 ).
-10. `write_image('name.ppm')`: Save the image with the same name provided in the arguement.
+10. `write_image('name.ppm')`: Save the image with the same name provided in the argument.
 
 ### Usage 
 ``` 
@@ -42,7 +42,7 @@ python3
 >>> x.apply_nofilterimg()                          # To get an image without applying filter
 >>> x.apply_grayscaleimg()                         # To get a grayscale image
 >>> x.adjust_brightness()                          # To adjust brightness of an image
->>> x.write_image("filename_to_write the image")   # To save the image with the name given in the arguement
+>>> x.write_image("filename_to_write the image")   # To save the image with the name given in the argument
 ```
 ### Structure
 ```
