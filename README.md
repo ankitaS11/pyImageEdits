@@ -1,15 +1,17 @@
 # pyImageEdits
 
-```pyImageEdits``` allows you to play with `.ppm` images by providing the following features:
-1. ```read_image()```: Reads Image path
-2. `get_image_path()`: returns the provided image path
-3. `set_image_path("<image_path>")`: Changes the image path
-4. ```apply_bluefilterimg()```: Applies blue filter to the given image path
-5. `apply_greenfilterimg()`: Applies green filter to  the given image path
-6. ```apply_redfilterimg()```: Applies red filter to the given image path
-7. `apply_nofilterimg()`: Get an image without applying filter
-8. `apply_grayscaleimg()`: Convert image to grayscale
-9. `adjust_brightness()`: Adjusts brightness of an image
+```pyImageEdits``` allows you to play with `.ppm` images of type "P3" by providing the following features:
+1. ```read_image('imagepath.ppm')```: Reads image from the path given as an arguement.
+2. `resize(width, height)`: Resizes the image as per width and height provided in the arguement.
+3. `horizontal_flip()`: Flips the image horizontally.
+4. `vertical_flip()`: Flips the image vertically.
+5. `applyfilter_red()`: Applies red filter to the image.
+6. `applyfilter_blue()`: Applies blue filter to the image.
+7. `applyfilter_green()`: Applies green filter to the image.
+8. `applyfilter_grayscale()`: Applies grayscale to the image.
+9. `adjust_brightness(amount)`: Adjusts brightness in the image as per the amount provided in the arguement ( to increase brightness : `amount` > 0 and to decrease : `amount` < 0 )
+10. `write_image('name.ppm')`: Save the image with the same name provided in the arguement.
+
 ### Usage 
 ``` 
 git clone https://github.com/ankitaS11/pyImageEdits.git
@@ -19,7 +21,7 @@ mkdir build && cd build
 cmake ..
 make
 ```
-Insert `.ppm` image [(Some `.ppm` images can be found here)](https://github.com/ferrabacus/p3images) in the build directory to use the `pyImageEdits` library.
+Insert `.ppm` image of type "P3" [(Some `.ppm` images can be found here)](https://github.com/ferrabacus/p3images) in the build directory to use the `pyImageEdits` library.
 Open python shell in the same directory and import `pyImageEdits`:
 ```
 python3
@@ -44,14 +46,6 @@ python3
 |-- pymain.cpp
 |-- CMakeLists.txt
 |-- sample_output_images
-  |-- sampletest_image.ppm
-  |-- bluefilter_image.ppm
-  |-- redfilter_image.ppm
-  |-- greenfilter_image.ppm
-  |-- nofilter_image.ppm
-  |-- brightened_image.ppm
-  |-- darkened_image
-  |-- grayscale_image.ppm
 |-- README.md
 |-- a.out
 ```
