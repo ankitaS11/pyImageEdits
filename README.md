@@ -9,7 +9,7 @@
 6. `applyfilter_blue()`: Applies blue filter to the image.
 7. `applyfilter_green()`: Applies green filter to the image.
 8. `applyfilter_grayscale()`: Applies grayscale to the image.
-9. `adjust_brightness(amt)`: Adjusts brightness as per amt ( to decrease brightness amt should be less than 0 ).
+9. `adjust_brightness(amt)`: Adjusts brightness as per amt ( to decrease brightness amt < 0 ).
 10. `write_image('name.ppm')`: Save the image with the same name provided in the arguement.
 
 ### Usage 
