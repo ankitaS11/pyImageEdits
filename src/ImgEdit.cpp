@@ -5,263 +5,185 @@
 
 using namespace std;
 
-bool ImageEdits::is_image_path_valid() {
-    return (!this->image ? false : true); 
+ImageEdits::~ImageEdits() {
+    delete_image();
 }
 
-void ImageEdits::read_image() {
-    /* This loads image only once */
-    this->image.open(this->image_path);
-    this->image >> this->type;
-    this->image >> this->width;
-    this->image >> this->height;
-    this->image >> this->RGB;
-    /* This checks if an image path is valid or not */
-    if (ImageEdits::is_image_path_valid() == false)
-        cout << "Image not read properly! \n";
+void ImageEdits::read_image(string file_name) {
+    ifstream input(file_name, ios::binary);
+    if (input) {
+        input >> type >> width >> height >> color;
+        if (type == "P3") {
+            image = new RGB*[height];
+            for (int i=0; i<height; i++) {
+                image[i] = new RGB[width];
+                for (int j=0; j<width; j++) {
+                    int r, g, b;
+                    input >> r >> g >> b;
+                    image[i][j].red = r;
+                    image[i][j].green = g;
+                    image[i][j].blue = b;
+                }
+            }
+            input.close();
+        }
+    }
+    else
+        cout << "Image not read properly \n";
 }
 
-void ImageEdits::apply_nofilterimg() {
-    if (ImageEdits::is_image_path_valid() == true) {
-        ofstream nofilter_image;
-        nofilter_image.open("nofilter_image.ppm");
-        nofilter_image << type << endl;
-        nofilter_image << width << " " << height << endl;
-        nofilter_image << RGB << endl;
-        // cout<< type << width << height << RGB <<endl;
-        while(!image.eof()) {
-            image >> red;
-            image >> green;
-            image >> blue;
-            // Converting string to int type
-            int r = 0, g = 0, b = 0;
-            stringstream redstream(red);
-            stringstream greenstream(green);
-            stringstream bluestream(blue);
-            redstream >> r;
-            greenstream >> g;
-            bluestream >> b;
-            // Saving the original image i.e. without filter  
-            nofilter_image << r << " " << g << " " << b << endl;
+void ImageEdits::write_image(string file_name) {
+    if (image != nullptr) {
+        ofstream output(file_name, ios::binary);
+        if (output.is_open()) {
+            output << type << endl;
+            output << width << " " << height << endl;
+            output << 255 << endl;
+
+            if (type == "P3") {
+                for (int i=0; i<height; i++) {
+                    for (int j=0; j<width; j++) {
+                        output << (int) image[i][j].red << " ";
+                        output << (int) image[i][j].green << " ";
+                        output << (int) image[i][j].blue << " ";
+                    }
+                }
+            }
+            output.close();
         }
-        nofilter_image.close();
     }
-    else {
-    cout << "Image not read properly! \n";
-    }
-}
-    
-void ImageEdits::apply_bluefilterimg() {
-    if (ImageEdits::is_image_path_valid() == true) {
-        ofstream bluefilter_image;
-        bluefilter_image.open("bluefilter_image.ppm");
-        bluefilter_image << type << endl;
-        bluefilter_image << width << " " << height << endl;
-        bluefilter_image << RGB << endl;
-        // cout<< type << width << height << RGB <<endl;
-        while(!image.eof()) {
-            image >> red;
-            image >> green;
-            image >> blue;
-            // Converting string to int type
-            int r = 0, g = 0, b = 0;
-            stringstream redstream(red);
-            stringstream greenstream(green);
-            stringstream bluestream(blue);
-            redstream >> r;
-            greenstream >> g;
-            bluestream >> b;
-            // Increasing the intensity of blue Pixels
-            b = (b+50)>255 ? b=255 : b+=50;
-            // Saving the applied filter in bluefilter image 
-            bluefilter_image << r << " " << g << " " << b << endl;
-        }
-        bluefilter_image.close();
-    }
-    else {
-        cout << "Input Image not read properly! \n";
-    }
+    else
+        cout << "Image not read properly \n";
 }
 
-void ImageEdits::apply_greenfilterimg() {
-    if (ImageEdits::is_image_path_valid() == true) {
-        ofstream greenfilter_image;
-        greenfilter_image.open("greenfilter_image.ppm");
-        greenfilter_image << type << endl;
-        greenfilter_image << width << " " << height << endl;
-        greenfilter_image << RGB << endl;
-        // cout<< type << width << height << RGB <<endl;
-        while(!image.eof()) {
-            image >> red;
-            image >> green;
-            image >> blue;
-            // Converting string to int type
-            int r = 0, g = 0, b = 0;
-            stringstream redstream(red);
-            stringstream greenstream(green);
-            stringstream bluestream(blue);
-            redstream >> r;
-            greenstream >> g;
-            bluestream >> b;
-            // Increasing the intensity of green pixels
-            g = (g+50)>255 ? g=255 : g+=50;
-            // Saving the applied filter in greenfilter image 
-            greenfilter_image << r << " " << g << " " << b << endl;
-        }
-        greenfilter_image.close();
+void ImageEdits::horizontal_flip() {
+    if (image != nullptr) {
+        for (int i=0; i<height; i++)
+            for(int j=0; j<width/2; j++)
+                swap(image[i][j], image[i][width-1-j]);
     }
-    else {
-        cout << "Image not read properly! \n";
+    else
+        cout << "Image not read properly \n";
+}
+
+void ImageEdits::vertical_flip() {
+    if (image != nullptr) {
+        for (int i=0; i<height/2; i++)
+            for (int j=0; j<width; j++) 
+                swap(image[i][j], image[height-1-i][j]);
+    }
+    else
+        cout << "Image not read properly \n";
+}
+
+void ImageEdits::resize(int height, int width) {
+    if (image != nullptr) {
+        RGB **image_resized = new RGB*[height];
+        for (int i=0; i<height; i++) {
+            image_resized[i] = new RGB[width];
+            for (int j=0; j<width; j++) {
+                image_resized[i][j].red = 255;
+                image_resized[i][j].green = 255;
+                image_resized[i][j].blue = 255;
+            }
+        }
+
+        for (int i = 0; i < height; i++) 
+            for (int j=0; j<width; j++)
+                image_resized[i][j] = image[i*this->height/height][j*this->width/width];
+        delete_image();
+        image = image_resized;
+        this -> height = height;
+        this -> width = width;
+    }
+    else
+        cout << "Image not read properly \n";
+}
+
+void ImageEdits::delete_image() {
+    if(image != nullptr) {
+        for (int i=0; i< height; i++)
+            delete image[i];
+
+        delete image;
     }
 }
 
-void ImageEdits::apply_redfilterimg() {
-    if (ImageEdits::is_image_path_valid() == true) {
-        ofstream redfilter_image;
-        redfilter_image.open("redfilter_image.ppm");
-        redfilter_image << type << endl;
-        redfilter_image << width << " " << height << endl;
-        redfilter_image << RGB << endl;
-        // cout<< type << width << height << RGB <<endl;
-        while(!image.eof()) {
-            image >> red;
-            image >> green;
-            image >> blue;
-            // Converting string to int type
-            int r = 0, g = 0, b = 0;
-            stringstream redstream(red);
-            stringstream greenstream(green);
-            stringstream bluestream(blue);
-            redstream >> r;
-            greenstream >> g;
-            bluestream >> b;
-            // Increasing the intensity of red pixels
-            r = (r+50)>255 ? r=255 : r+=50;
-            // Saving the applied filter in redfilter image 
-            redfilter_image << r << " " << g << " " << b <<endl;
-        }
-        redfilter_image.close();
-    }
-    else {
-        cout << "Image not read properly! \n";
-    }
+void ImageEdits::applyfilter_red() {
+    if (image != nullptr) {
+        for (int i=0; i<height; i++) 
+            for (int j=0; j<width; j++)
+                image[i][j].red = (image[i][j].red+50)>255 ? 255 : image[i][j].red+=50;
+    }  
+    else
+        cout << "Image not read properly \n"; 
 }
 
-void ImageEdits::apply_grayscaleimg() {
-    if (ImageEdits::is_image_path_valid() == true) {
-        ofstream grayscale_image;
-        grayscale_image.open("grayscale_image.ppm");
-        grayscale_image << type << endl;
-        grayscale_image << width << " " << height << endl;
-        grayscale_image << RGB << endl;
-        // cout<< type << width << height << RGB <<endl;
-        while(!image.eof()) {
-            image >> red;
-            image >> green;
-            image >> blue;
-            // Converting string to int type
-            int r = 0, g = 0, b = 0;
-            stringstream redstream(red);
-            stringstream greenstream(green);
-            stringstream bluestream(blue);
-            redstream >> r;
-            greenstream >> g;
-            bluestream >> b;
-            // Converting to grayscale image
-            int x = (r + g + b)/3;
-            r = g = b = x;   
-            // Saving the image in new file named grayscale_image.
-            grayscale_image << r << " " << g << " " << b << endl;
-        }
-        grayscale_image.close();
+void ImageEdits::applyfilter_green() {
+    if (image != nullptr) {
+        for (int i=0; i<height; i++)
+            for (int j=0; j<width; j++)
+                image[i][j].green = (image[i][j].green+50)>255 ? 255 : image[i][j].green+=50;
     }
-    else {
-        cout << "Image not read properly! \n";
-    }
+    else
+        cout << "Image not read properly \n";
 }
 
-void ImageEdits::increase_brightness(int amount) {
-    if (ImageEdits::is_image_path_valid() == true) {
-        ofstream brightened_image;
-        brightened_image.open("brightened_image.ppm");
-        brightened_image << type << endl;
-        brightened_image << width << " " << height << endl;
-        brightened_image << RGB << endl;
-        // cout<< type << width << height << RGB <<endl;
-        string image_path = "", type = "", width = "", height = "", RGB = "";
-        string red = "", green = "", blue = "";
-        while(!image.eof()) {
-            image >> red;
-            image >> green;
-            image >> blue;
-            // Converting string to int type
-            int r = 0, g = 0, b = 0;
-            stringstream redstream(red);
-            stringstream greenstream(green);
-            stringstream bluestream(blue);
-            redstream >> r;
-            greenstream >> g;
-            bluestream >> b;
-            // Increasing the brightness by increasing the value of pixels
-            r = (r + r*(amount/100))<255 ? r+(r*(amount/100)) : 255;
-            g = (g + g*(amount/100))<255 ? g+(g*(amount/100)) : 255;
-            b = (b + b*(amount/100))<255 ? b+(b*(amount/100)) : 255;
-            // Saving the image in a new file named brightened_image 
-            brightened_image << r << " " << g << " " << b << endl;
-        }
-        brightened_image.close();
-    }
-    else {
-        cout << "Image not read properly! \n";
-    }
-}
-
-void ImageEdits::decrease_brightness(int amount) {
-    if (ImageEdits::is_image_path_valid() == true) {
-        ofstream darkened_image;
-        darkened_image.open("darkned_image.ppm");
-        darkened_image << type << endl;
-        darkened_image << width << " " << height << endl;
-        darkened_image << RGB << endl;
-        // cout<< type << width << height << RGB <<endl;
-        string image_path = "", type = "", width = "", height = "", RGB = "";
-        string red = "", green = "", blue = "";
-        while(!image.eof()) {
-            image >> red;
-            image >> green;
-            image >> blue;
-            // Converting string to int type
-            int r = 0, g = 0, b = 0;
-            stringstream redstream(red);
-            stringstream greenstream(green);
-            stringstream bluestream(blue);
-            redstream >> r;
-            greenstream >> g;
-            bluestream >> b;
-            // Decreasing the brightness by reducing the value of pixels
-            r = (r - amount)>0 ? r-amount : 0;
-            g = (g - amount)>0 ? g-amount : 0;
-            b = (b - amount)>0 ? b-amount : 0;
-            // Saving the image in a new file named darkened_image
-            darkened_image << r << " " << g << " " << b << endl;
-        }
-        darkened_image.close();
+void ImageEdits::applyfilter_blue() {
+    if (image != nullptr) {
+        for (int i=0; i<height; i++) 
+            for (int j=0; j<width; j++)
+                image[i][j].blue = (image[i][j].blue+50)>255 ? 255 : image[i][j].blue+=50;
     } 
-    else {
-        cout << "Image not read properly! \n";
-    }
+    else
+        cout << "Image not read properly \n";
 }
 
-void ImageEdits::adjust_brightness() {
-    int amount;
-    cout << "Enter the amount by which brightness needs to be increased(+ve)/decreased(-ve) >> ";
-    cin >> amount;
-    if (amount < 0) {
-        this->ImageEdits::decrease_brightness(-1 * amount);
+void ImageEdits:: applyfilter_grayscale() {
+    if (image != nullptr) {
+        const float r = 0.299f;
+        const float g = 0.587f;
+        const float b = 0.114f;
+        float grayscaleValue;
+
+        for (int i=0; i<height; i++) {
+            for (int j=0; j<width; j++) {
+                grayscaleValue = image[i][j].red*r + image[i][j].green*g + image[i][j].blue*b;
+                image[i][j].red = grayscaleValue;
+                image[i][j].green = grayscaleValue;
+                image[i][j].blue = grayscaleValue;
+            }
+        }
     }
-    else {
-        this->ImageEdits::increase_brightness(amount);
+    else
+        cout << "Image not read properly \n";
+}
+
+void ImageEdits::adjust_brightness(int amount) {
+    if (image != nullptr) {
+        if (amount > 0) {
+            for (int i=0; i<height; i++) {
+                for (int j=0; j<width; j++) {
+                    image[i][j].red = (image[i][j].red+image[i][j].red*(amount/100))<255 ? image[i][j].red+image[i][j].red*(amount/100) : 255;
+                    image[i][j].green = (image[i][j].green+image[i][j].green*(amount/100))<255 ? image[i][j].green+image[i][j].green*(amount/100) : 255;
+                    image[i][j].blue = (image[i][j].blue+image[i][j].blue*(amount/100))<255 ? image[i][j].blue+image[i][j].blue*(amount/100) : 255;
+                }
+            }   
+        }
+        else 
+        {
+            for (int i=0; i<height; i++) {
+                for (int j=0; j<width; j++) {
+                    image[i][j].red = (image[i][j].red+amount)>0 ? image[i][j].red+amount : 0;
+                    image[i][j].green = (image[i][j].green+amount)>0 ? image[i][j].green+amount : 0;
+                    image[i][j].blue = (image[i][j].blue+amount)>0 ? image[i][j].blue+amount : 0;
+
+                }
+            }   
+        }
     }
+    else
+        cout << "Image not read properly \n";
 }
 
 

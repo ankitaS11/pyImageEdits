@@ -3,38 +3,48 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <cmath>
 
 using namespace std;
 
 class ImageEdits {
-private:
-    string image_path = "", type = "", width = "", height = "", RGB = "";
-    string red = "", green = "", blue = "";
-    ifstream image;
+
 public:
-    ImageEdits(string image_path) {
-        this->image_path = image_path;
+    ~ImageEdits();
+    ImageEdits() {}
+    struct RGB 
+    {
+        unsigned char red;
+        unsigned char green;
+        unsigned char blue;
+    };
+
+    void set_width(int width) {
+        this->width = width;
     }
     
-    void read_image();
-    bool is_image_path_valid();
-
-    string get_image_path() {
-        return this->image_path;
+    void set_height(int height) {
+        this->height = height;
     }
+    void read_image(string file_name);
+    void write_image(string file_name);
+    void delete_image();
+    void horizontal_flip();
+    void vertical_flip();
+    void resize(int height, int weight);
+    void applyfilter_red();
+    void applyfilter_green();
+    void applyfilter_blue();
+    void applyfilter_grayscale();
+    void adjust_brightness(int amount);
+    RGB **image = nullptr;
 
-    void set_image_path(string new_path) {
-        this -> image_path = new_path;
-    }
-    
-    void apply_nofilterimg();
-    void apply_bluefilterimg();
-    void apply_greenfilterimg();
-    void apply_redfilterimg();
-    void apply_grayscaleimg();
-    void adjust_brightness();
-    void increase_brightness(int amount);
-    void decrease_brightness(int amount);
+private:
+    int width = 0;
+    int height = 0;
+    int color = 0;
+    string type = "P3";
 };
 
 #endif

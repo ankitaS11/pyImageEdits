@@ -8,15 +8,19 @@ using namespace std;
 PYBIND11_MODULE(pyImageEdits, m) {
     m.doc() = "A sample add function";
 
-    py::class_<ImageEdits>(m, "pyImageEdits")
-        .def(py::init<std::string>())
+    py::class_<ImageEdits>(m, "ImageEdits")
+        .def(py::init())
         .def("read_image", &ImageEdits::read_image)
-        .def("get_image_path", &ImageEdits::get_image_path)
-        .def("set_image_path", &ImageEdits::set_image_path)
-        .def("apply_nofilterimg", &ImageEdits::apply_nofilterimg)
-        .def("apply_bluefilterimg", &ImageEdits::apply_bluefilterimg)
-        .def("apply_greenfilterimg", &ImageEdits::apply_greenfilterimg)
-        .def("apply_redfilterimg", &ImageEdits::apply_redfilterimg)
-        .def("apply_grayscaleimg", &ImageEdits::apply_grayscaleimg)
+        .def("write_image", &ImageEdits::write_image)
+        .def("horizontal_flip", &ImageEdits::horizontal_flip)
+        .def("vertical_flip", &ImageEdits::vertical_flip)
+        .def("resize", &ImageEdits::resize)
+        .def("set_width", &ImageEdits::set_width)
+        .def("set_height", &ImageEdits::set_height)
+        .def("applyfilter_red", &ImageEdits::applyfilter_red)
+        .def("applyfilter_green", &ImageEdits::applyfilter_green)
+        .def("applyfilter_blue", &ImageEdits::applyfilter_blue)
+        .def("applyfilter_grayscale", &ImageEdits::applyfilter_grayscale)
         .def("adjust_brightness", &ImageEdits::adjust_brightness);
+        
 }
