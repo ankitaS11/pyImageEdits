@@ -1,6 +1,6 @@
 # pyImageEdits
 
-```pyImageEdits``` allows you to play with `.ppm` images of type "P3" by providing the following features:
+```pyImageEdits``` allows you to play with `.ppm` images of type `P3` by providing the following features-
 1. ```read_image('imagepath.ppm')```: Reads image from the path given as an arguement.
 2. `resize(width, height)`: Resizes the image as per width and height provided in the arguement.
 3. `horizontal_flip()`: Flips the image horizontally.
@@ -9,7 +9,7 @@
 6. `applyfilter_blue()`: Applies blue filter to the image.
 7. `applyfilter_green()`: Applies green filter to the image.
 8. `applyfilter_grayscale()`: Applies grayscale to the image.
-9. `adjust_brightness(amount)`: Adjusts brightness in the image as per the amount provided in the arguement ( to increase brightness : `amount` > 0 and to decrease : `amount` < 0 )
+9. `adjust_brightness(amt)`: Adjusts brightness as per amt ( to decrease brightness amt should be less than 0 ).
 10. `write_image('name.ppm')`: Save the image with the same name provided in the arguement.
 
 ### Usage 
@@ -26,16 +26,23 @@ Open python shell in the same directory and import `pyImageEdits`:
 ```
 python3
 >>> import pyImageEdits
->>> x = pyImageEdits.pyImageEdits("monument.ppm")
->>> x.read_image()           # To read the image
->>> x.get_image_path()       # To get the provided image path
->>> x.set_image_path()       # To change the image path
->>> x.apply_bluefilterimg()  # To apply blue filter
->>> x.apply_redfilterimg()   # To apply red filter
->>> x.apply_greenfilterimg() # To apply green filter
->>> x.apply_nofilterimg()    # To get an image without applying filter
->>> x.apply_grayscaleimg()   # To get a grayscale image
->>> x.adjust_brightness()    # To adjust brightness of an image
+>>> x = pyImageEdits.ImageEdits("monument.ppm")
+>>> x.read_image("provide_image_path_to_read")     # To read the image
+>>> x.resize(provide_width, provide_height)        # To resize the image
+>>> x.horizontal_flip()                            # To flip image horizontally
+>>> x.vertical_flip()                              # To flip image vertically
+>>> x.applyfilter_red()                            # To apply red filter
+>>> x.applyfilter_green()                          # To apply green filter
+>>> x.applyfilter_blue()                           # To apply blue filter
+>>> x.applyfilter_grayscale()                      # To apply grayscale filter
+>>> x.set_image_path()                             # To change the image path
+>>> x.apply_bluefilterimg()                        # To apply blue filter
+>>> x.apply_redfilterimg()                         # To apply red filter
+>>> x.apply_greenfilterimg()                       # To apply green filter
+>>> x.apply_nofilterimg()                          # To get an image without applying filter
+>>> x.apply_grayscaleimg()                         # To get a grayscale image
+>>> x.adjust_brightness()                          # To adjust brightness of an image
+>>> x.write_image("filename_to_write the image")   # To save the image with the name given in the arguement
 ```
 ### Structure
 ```
