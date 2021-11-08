@@ -42,7 +42,7 @@ python3
 >>> x.apply_nofilterimg()                          # To get an image without applying filter
 >>> x.apply_grayscaleimg()                         # To get a grayscale image
 >>> x.adjust_brightness()                          # To adjust brightness of an image
->>> x.write_image("filename_to_write the image")   # To save the image with the name given in the argument
+>>> x.write_image("filename_to_write_img")         # To save the image with the name given in the argument
 ```
 ### Structure
 ```
@@ -59,7 +59,4 @@ python3
 ### Sample Output Images 
 <p align = "center">
 <img align="center" src="https://github.com/ankitaS11/pyImageEdits/blob/main/sample_output_images/0001.jpg">
-</p>
-<p align = "center">
-<img align="center" src="https://github.com/ankitaS11/pyImageEdits/blob/main/sample_output_images/0002.jpg">
 </p>
