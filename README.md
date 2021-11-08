@@ -21,7 +21,7 @@ mkdir build && cd build
 cmake ..
 make
 ```
-Insert `.ppm` image of type "P3" [(Some `.ppm` images can be found here)](https://github.com/ferrabacus/p3images) in the build directory to use the `pyImageEdits` library.
+Insert `.ppm` image of type `P3` [(Some `.ppm` images can be found here)](https://github.com/ferrabacus/p3images) in the build directory to use the `pyImageEdits` library.
 Open python shell in the same directory and import `pyImageEdits`:
 ```
 python3
