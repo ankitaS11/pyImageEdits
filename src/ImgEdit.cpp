@@ -29,7 +29,7 @@ void ImageEdits::read_image(string file_name) {
         }
     }
     else
-        cout << "Image not read properly \n";
+        raise_warning_message();
 }
 
 void ImageEdits::write_image(string file_name) {
@@ -53,7 +53,7 @@ void ImageEdits::write_image(string file_name) {
         }
     }
     else
-        cout << "Image not read properly \n";
+        raise_warning_message();
 }
 
 void ImageEdits::horizontal_flip() {
@@ -63,7 +63,7 @@ void ImageEdits::horizontal_flip() {
                 swap(image[i][j], image[i][width-1-j]);
     }
     else
-        cout << "Image not read properly \n";
+        raise_warning_message();
 }
 
 void ImageEdits::vertical_flip() {
@@ -73,7 +73,7 @@ void ImageEdits::vertical_flip() {
                 swap(image[i][j], image[height-1-i][j]);
     }
     else
-        cout << "Image not read properly \n";
+        raise_warning_message();
 }
 
 void ImageEdits::resize(int height, int width) {
@@ -97,7 +97,7 @@ void ImageEdits::resize(int height, int width) {
         this -> width = width;
     }
     else
-        cout << "Image not read properly \n";
+        raise_warning_message();
 }
 
 void ImageEdits::delete_image() {
@@ -116,7 +116,7 @@ void ImageEdits::applyfilter_red() {
                 image[i][j].red = (image[i][j].red+50)>255 ? 255 : image[i][j].red+=50;
     }  
     else
-        cout << "Image not read properly \n"; 
+        raise_warning_message();
 }
 
 void ImageEdits::applyfilter_green() {
@@ -126,7 +126,7 @@ void ImageEdits::applyfilter_green() {
                 image[i][j].green = (image[i][j].green+50)>255 ? 255 : image[i][j].green+=50;
     }
     else
-        cout << "Image not read properly \n";
+        raise_warning_message();
 }
 
 void ImageEdits::applyfilter_blue() {
@@ -136,10 +136,10 @@ void ImageEdits::applyfilter_blue() {
                 image[i][j].blue = (image[i][j].blue+50)>255 ? 255 : image[i][j].blue+=50;
     } 
     else
-        cout << "Image not read properly \n";
+        raise_warning_message();
 }
 
-void ImageEdits:: applyfilter_grayscale() {
+void ImageEdits::applyfilter_grayscale() {
     if (image != nullptr) {
         const float r = 0.299f;
         const float g = 0.587f;
@@ -156,7 +156,7 @@ void ImageEdits:: applyfilter_grayscale() {
         }
     }
     else
-        cout << "Image not read properly \n";
+        raise_warning_message();
 }
 
 void ImageEdits::adjust_brightness(int amount) {
@@ -183,8 +183,10 @@ void ImageEdits::adjust_brightness(int amount) {
         }
     }
     else
-        cout << "Image not read properly \n";
+        raise_warning_message();
 }
 
-
+void raise_warning_message() {
+    cout << "Image not read properly \n";
+}
 

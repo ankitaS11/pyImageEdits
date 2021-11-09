@@ -27,6 +27,7 @@ public:
     void set_height(int height) {
         this->height = height;
     }
+    
     void read_image(string file_name);
     void write_image(string file_name);
     void delete_image();
