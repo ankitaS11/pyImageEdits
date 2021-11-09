@@ -2,7 +2,8 @@
 
 <p align = "center">
 <img align="center" src="https://github.com/ankitaS11/pyImageEdits/blob/main/sample_output_images/0001.jpg">
-<br>
+  <br>
+  <br>
   
 ```pyImageEdits``` allows you to play with `.ppm` images of type `P3` by providing the following features-
 1. ```read_image('imagepath.ppm')```: Reads image from the path given as an argument.
