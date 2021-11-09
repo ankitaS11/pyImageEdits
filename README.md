@@ -3,14 +3,16 @@
 ```pyImageEdits``` allows you to play with `.ppm` images of type `P3` by providing the following features-
 1. ```read_image('imagepath.ppm')```: Reads image from the path given as an argument.
 2. `resize(width, height)`: Resizes the image as per width and height provided in the argument.
-3. `horizontal_flip()`: Flips the image horizontally.
-4. `vertical_flip()`: Flips the image vertically.
-5. `applyfilter_red()`: Applies red filter to the image.
-6. `applyfilter_blue()`: Applies blue filter to the image.
-7. `applyfilter_green()`: Applies green filter to the image.
-8. `applyfilter_grayscale()`: Applies grayscale to the image.
-9. `adjust_brightness(amt)`: Adjusts brightness as per amt ( to decrease brightness amt < 0 ).
-10. `write_image('name.ppm')`: Save the image with the same name provided in the argument.
+3. `set_width(cropped_width_size)`: Adjusts the width as per the arguement provided without changing the height.
+4. `set_height(cropped_height_size)`: Adjusts the height as per the arguement provided without changing the width/
+5. `horizontal_flip()`: Flips the image horizontally.
+6. `vertical_flip()`: Flips the image vertically.
+7. `applyfilter_red()`: Applies red filter to the image.
+8. `applyfilter_blue()`: Applies blue filter to the image.
+9. `applyfilter_green()`: Applies green filter to the image.
+10. `applyfilter_grayscale()`: Applies grayscale to the image.
+11. `adjust_brightness(amt)`: Adjusts brightness as per amt ( to decrease brightness amt < 0 ).
+12. `write_image('name.ppm')`: Save the image with the same name provided in the argument.
 
 ### Usage 
 ``` 
@@ -29,6 +31,8 @@ python3
 >>> x = pyImageEdits.ImageEdits("monument.ppm")
 >>> x.read_image("provide_image_path_to_read")     # To read the image
 >>> x.resize(provide_width, provide_height)        # To resize the image
+>>> x.set_width(width_size)                        # Adjusts width of the image
+>>> x.set_height(height_size)                      # Adjusts height of the image
 >>> x.horizontal_flip()                            # To flip image horizontally
 >>> x.vertical_flip()                              # To flip image vertically
 >>> x.applyfilter_red()                            # To apply red filter
