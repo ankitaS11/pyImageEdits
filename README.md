@@ -3,8 +3,8 @@
 ```pyImageEdits``` allows you to play with `.ppm` images of type `P3` by providing the following features-
 1. ```read_image('imagepath.ppm')```: Reads image from the path given as an argument.
 2. `resize(width, height)`: Resizes the image as per width and height provided in the argument.
-3. `set_width(cropped_width_size)`: Adjusts the width as per the arguement provided without changing the height.
-4. `set_height(cropped_height_size)`: Adjusts the height as per the arguement provided without changing the width/
+3. `set_width(cropped_width_size)`: Adjusts the width as per the argument without changing the height.
+4. `set_height(cropped_height_size)`: Adjusts the height as per the argument without changing the width/
 5. `horizontal_flip()`: Flips the image horizontally.
 6. `vertical_flip()`: Flips the image vertically.
 7. `applyfilter_red()`: Applies red filter to the image.
