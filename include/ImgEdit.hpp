@@ -27,7 +27,7 @@ public:
     void set_height(int height) {
         this->height = height;
     }
-    
+
     void read_image(string file_name);
     void write_image(string file_name);
     void delete_image();
@@ -39,6 +39,7 @@ public:
     void applyfilter_blue();
     void applyfilter_grayscale();
     void adjust_brightness(int amount);
+    void raise_warning_message();
     RGB **image = nullptr;
 
 private:

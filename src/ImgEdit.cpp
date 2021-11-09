@@ -186,7 +186,7 @@ void ImageEdits::adjust_brightness(int amount) {
         raise_warning_message();
 }
 
-void raise_warning_message() {
+void ImageEdits::raise_warning_message() {
     cout << "Image not read properly \n";
 }
 
